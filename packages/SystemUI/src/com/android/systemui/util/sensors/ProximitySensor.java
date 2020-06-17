@@ -257,9 +257,10 @@ public class ProximitySensor implements ThresholdSensor {
             return;
         }
         if (mLastEvent != null) {
+            ThresholdSensorEvent lastEvent = mLastEvent;  // Listeners can null out mLastEvent.
             List<ThresholdSensor.Listener> listeners = new ArrayList<>(mListeners);
             listeners.forEach(proximitySensorListener ->
-                    proximitySensorListener.onThresholdCrossed(mLastEvent));
+                    proximitySensorListener.onThresholdCrossed(lastEvent));
         }
 
         mAlerting.set(false);
