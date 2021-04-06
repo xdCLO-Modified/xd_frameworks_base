@@ -18,6 +18,7 @@ package android.os;
 
 import android.annotation.NonNull;
 import android.compat.annotation.UnsupportedAppUsage;
+import android.os.Build;
 
 import dalvik.annotation.optimization.CriticalNative;
 import dalvik.annotation.optimization.FastNative;
@@ -145,6 +146,10 @@ public final class Trace {
      */
     @UnsupportedAppUsage
     public static boolean isTagEnabled(long traceTag) {
+        if (!Build.IS_DEBUGGABLE) {
+            return false;
+        }
+
         long tags = nativeGetEnabledTags();
         return (tags & traceTag) != 0;
     }
