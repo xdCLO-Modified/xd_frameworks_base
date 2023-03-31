@@ -23,6 +23,7 @@ import android.annotation.SystemApi;
 import android.annotation.TestApi;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.SystemProperties;
 import android.telephony.AccessNetworkConstants.TransportType;
 import android.telephony.Annotation.NetworkType;
 import android.text.TextUtils;
@@ -481,6 +482,8 @@ public final class NetworkRegistrationInfo implements Parcelable {
      * @hide
      */
     public void setAccessNetworkTechnology(@NetworkType int tech) {
+        // HACK: Force LTE Carrier Aggregation
+            mIsUsingCarrierAggregation = true;
         if (tech == TelephonyManager.NETWORK_TYPE_LTE_CA) {
             // For old device backward compatibility support
             tech = TelephonyManager.NETWORK_TYPE_LTE;
