@@ -455,9 +455,9 @@ class MediaDataManager(
         val smallIconDrawable: Drawable = sbn.notification.smallIcon.loadDrawable(context)
 
         // Song name
-        var song: CharSequence? = metadata.getString(MediaMetadata.METADATA_KEY_DISPLAY_TITLE)
+        var song: CharSequence? = metadata?.getString(MediaMetadata.METADATA_KEY_DISPLAY_TITLE)
         if (song.isNullOrBlank()) {
-            song = metadata.getString(MediaMetadata.METADATA_KEY_TITLE)
+            song = metadata?.getString(MediaMetadata.METADATA_KEY_TITLE)
         }
         if (song.isNullOrBlank()) {
             song = HybridGroupManager.resolveTitle(notif)
